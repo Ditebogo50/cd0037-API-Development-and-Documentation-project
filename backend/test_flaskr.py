@@ -32,6 +32,14 @@ class TriviaTestCase(unittest.TestCase):
             "difficulty": 2,
             "category": "Geography"
         }
+
+        self.quiz = {
+        'previous_questions': [1, 4, 20],
+        'quiz_category': {
+            "id": 2,
+            "type": "Art"
+        }
+    }
     
     def tearDown(self):
         """Executed after reach test"""
@@ -164,10 +172,12 @@ class TriviaTestCase(unittest.TestCase):
 
 #test for /quizzes
 
-# 
-#         
-
-
+    def test_quiz(self):
+         res = self.client().post("/quizzes", json=self.quiz)
+         data = json.loads(res.data)
+         self.assertEqual(res.status_code, 200)
+         self.assertEqual(data["success"], True)
+         self.assertTrue(data['question'])
 
 
 
