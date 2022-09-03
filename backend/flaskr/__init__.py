@@ -296,9 +296,9 @@ def create_app(test_config=None):
     def server_error(error):
         return jsonify({
             "success": False, 
-            "error": 405,
+            "error": 500,
             "message": "internal server error"
-        }), 405      
+        }), 500     
 
     return app
 
